@@ -32,7 +32,9 @@
       <li aria-current={$page.url.pathname === "/hanzi" ? "page" : undefined}>
         <a href="/hanzi">Hanzi</a>
       </li>
-      <li aria-current={$page.url.pathname === "/hanzi" ? "page" : undefined}>
+      <li
+        aria-current={$page.url.pathname === "/nastaveni" ? "page" : undefined}
+      >
         <a href="/nastaveni">Nastavení</a>
       </li>
     </ul>
