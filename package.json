@@ -24,6 +24,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"sveltestrap": "^5.10.0"
+		"sveltestrap": "^5.10.0",
+		"tauri-plugin-sqlite-api": "github:lzdyes/tauri-plugin-sqlite#v0.1.1"
 	}
 }
