@@ -1,5 +1,4 @@
 <script>
-  import { TabContent, TabPane } from "sveltestrap";
 </script>
 
 <h1>Nastavení:</h1>
