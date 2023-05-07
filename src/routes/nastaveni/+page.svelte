@@ -1,8 +1,10 @@
-<script>
+<script lang="ts">
+  import { toggleFullscreen } from "$lib/utils/window";
 </script>
 
 <h1>Nastavení:</h1>
 
+<button on:click={toggleFullscreen}>Toggle Fullscreen</button>
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
   <label class="btn btn-secondary active">
     <input
