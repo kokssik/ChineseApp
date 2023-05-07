@@ -2,6 +2,9 @@
   import { TabContent, TabPane } from "sveltestrap";
   import SQLite from "tauri-plugin-sqlite-api";
   import { onMount } from "svelte";
+
+  import HanziCard from "$lib/components/HanziCard.svelte";
+
   onMount(async () => {
     console.log("Netušíš xD");
 
@@ -40,26 +43,19 @@
   </TabPane>
 </TabContent>
 
-<div class="card">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-2">
-        <div class="divSymbol rounded border border-success">
-          <p class="symbol">我</p>
-        </div>
-      </div>
-      <div class="col-2">
-        <h2>Výslovnost:</h2>
-        <p>Wo3</p>
-      </div>
-      <div class="col-2">
-        <h2>Význam:</h2>
-        <p>Já</p>
-      </div>
-      <div class="col-6">One of three columns</div>
-    </div>
-  </div>
-</div>
+<HanziCard
+  character="我"
+  pronunciation="Wo3"
+  meaning="já"
+  strokeOrderImg="/stroke_order/1xd.png"
+/>
+
+<HanziCard
+  character="我"
+  pronunciation="Wo3"
+  meaning="já"
+  strokeOrderImg="/stroke_order/2.jpg"
+/>
 
 <style>
   .symbol {
