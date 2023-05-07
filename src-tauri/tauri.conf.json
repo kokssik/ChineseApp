@@ -61,7 +61,7 @@
       {
         "fullscreen": false,
         "height": 600,
-        "resizable": false,
+        "resizable": true,
         "title": "ChineseApp",
         "width": 800
       }
