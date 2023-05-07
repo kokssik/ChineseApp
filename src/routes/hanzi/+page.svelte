@@ -61,6 +61,36 @@
   </div>
 </div>
 
+<div
+  class="block max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow mt-10"
+>
+  <div class="flex flex-row gap-10">
+    <div class="flex-inital">
+      <div class="border-solid border-2 rounded-md bg-teal-100 border-blue-400">
+        <p class="text-7xl">我</p>
+      </div>
+    </div>
+    <div class="flex-initial w-24">
+      <div class="flex flex-col">
+        <div>Výslovnost:</div>
+        <div>Wo3</div>
+      </div>
+    </div>
+    <div class="flex-inital">
+      <div class="flex flex-col">
+        <div>Význam:</div>
+        <div>já</div>
+      </div>
+    </div>
+    <div class="flex-inital">
+      <div class="flex flex-col">
+        <div>Stroke board:</div>
+        <img class="img-fluid w-128" src="/stroke_order/1xd.png" alt="Wo" />
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
   .symbol {
     font-size: 75px;
