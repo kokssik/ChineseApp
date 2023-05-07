@@ -1,7 +1,23 @@
 <script>
   import { TabContent, TabPane } from "sveltestrap";
   import SQLite from "tauri-plugin-sqlite-api";
+  import { onMount } from "svelte";
+
   import HanziCard from "$lib/components/HanziCard.svelte";
+
+  onMount(async () => {
+    console.log("Netušíš xD");
+
+    /** The path will be 'src-tauri/test.db', you can customize the path */
+    const db = await SQLite.open("./test.db");
+
+    /** execute SQL */
+    await db.execute(`
+      CREATE TABLE users (name TEST, age INTEGER);
+      INSERT INTO users VALUES ('Alice', 42);
+      INSERT INTO users VALUES ('Bob', 69);
+  `);
+  });
 </script>
 
 <TabContent>
@@ -28,94 +44,51 @@
 </TabContent>
 
 <!-- TEST - TAB -->
-<!--Tabs navigation-->
-<!-- <ul
-  class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0"
-  role="tablist"
-  data-te-nav-ref
+<div class="sm:hidden">
+  <label for="tabs" class="sr-only">Select your country</label>
+  <select
+    id="tabs"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+  >
+    <option>Profile</option>
+    <option>Canada</option>
+    <option>France</option>
+    <option>Germany</option>
+  </select>
+</div>
+<ul
+  class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400"
 >
-  <li role="presentation">
+  <li class="w-full">
     <a
-      href="#tabs-home"
-      class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
-      data-te-toggle="pill"
-      data-te-target="#tabs-home"
-      data-te-nav-active
-      role="tab"
-      aria-controls="tabs-home"
-      aria-selected="true">Home</a
+      href="#"
+      class="inline-block w-full p-4 text-gray-900 bg-gray-100 rounded-l-lg focus:ring-4 focus:ring-blue-300 active focus:outline-none dark:bg-gray-700 dark:text-white"
+      aria-current="page">Profile</a
     >
   </li>
-  <li role="presentation">
+  <li class="w-full">
     <a
-      href="#tabs-profile"
-      class="focus:border-transparen my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
-      data-te-toggle="pill"
-      data-te-target="#tabs-profile"
-      role="tab"
-      aria-controls="tabs-profile"
-      aria-selected="false">Profile</a
+      href="#"
+      class="inline-block w-full p-4 bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+      >Dashboard</a
     >
   </li>
-  <li role="presentation">
+  <li class="w-full">
     <a
-      href="#tabs-messages"
-      class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
-      data-te-toggle="pill"
-      data-te-target="#tabs-messages"
-      role="tab"
-      aria-controls="tabs-messages"
-      aria-selected="false">Messages</a
+      href="#"
+      class="inline-block w-full p-4 bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+      >Settings</a
     >
   </li>
-  <li role="presentation">
+  <li class="w-full">
     <a
-      href="#tabs-contact"
-      class="disabled pointer-events-none my-2 block border-x-0 border-b-2 border-t-0 border-transparent bg-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-400 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent dark:text-neutral-600"
-      data-te-toggle="pill"
-      data-te-target="#tabs-contact"
-      role="tab"
-      aria-controls="tabs-contact"
-      aria-selected="false">Contact</a
+      href="#"
+      class="inline-block w-full p-4 bg-white rounded-r-lg hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+      >Invoice</a
     >
   </li>
 </ul>
-<div class="mb-6">
-  <div
-    class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-    id="tabs-home"
-    role="tabpanel"
-    aria-labelledby="tabs-home-tab"
-    data-te-tab-active
-  >
-    Tab 1 content
-  </div>
-  <div
-    class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-    id="tabs-profile"
-    role="tabpanel"
-    aria-labelledby="tabs-profile-tab"
-  >
-    Tab 2 content
-  </div>
-  <div
-    class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-    id="tabs-messages"
-    role="tabpanel"
-    aria-labelledby="tabs-profile-tab"
-  >
-    Tab 3 content
-  </div>
-  <div
-    class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-    id="tabs-contact"
-    role="tabpanel"
-    aria-labelledby="tabs-contact-tab"
-  >
-    Tab 4 content
-  </div>
-</div>
--->
+<!-- TEST - TAB -->
 
 <HanziCard
   character="我"
