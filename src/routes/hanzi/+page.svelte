@@ -2,23 +2,39 @@
   import { TabContent, TabPane } from "sveltestrap";
   import SQLite from "tauri-plugin-sqlite-api";
   import { onMount } from "svelte";
-
   import HanziCard from "$lib/components/HanziCard.svelte";
 
+  let rows = [];
+
   onMount(async () => {
-    console.log("Netušíš xD");
+    const db = await SQLite.open("./hanzi.db");
 
-    /** The path will be 'src-tauri/test.db', you can customize the path */
-    const db = await SQLite.open("./test.db");
+    rows = await db.select("SELECT * FROM hanzi");
 
-    /** execute SQL */
-    await db.execute(`
-      CREATE TABLE users (name TEST, age INTEGER);
-      INSERT INTO users VALUES ('Alice', 42);
-      INSERT INTO users VALUES ('Bob', 69);
-  `);
+    console.log(rows);
   });
 </script>
+
+{#each rows as row}
+  <div>
+    {row.meaning}
+  </div>
+{/each}
+
+<HanziCard
+  character="我"
+  pronunciation="Wo3"
+  meaning="já"
+  strokeOrderImg="/stroke_order/1xd.png"
+/>
+{#each rows as row}
+  <HanziCard
+    character={row.symbol}
+    pronunciation={row.pronounciation}
+    meaning={row.meaning}
+    strokeOrderImg={row.image}
+  />
+{/each}
 
 <TabContent>
   <TabPane tabId="alpha" tab="Alpha" active>
