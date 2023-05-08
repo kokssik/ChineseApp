@@ -15,27 +15,6 @@
   });
 </script>
 
-{#each rows as row}
-  <div>
-    {row.meaning}
-  </div>
-{/each}
-
-<HanziCard
-  character="我"
-  pronunciation="Wo3"
-  meaning="já"
-  strokeOrderImg="/stroke_order/1xd.png"
-/>
-{#each rows as row}
-  <HanziCard
-    character={row.symbol}
-    pronunciation={row.pronounciation}
-    meaning={row.meaning}
-    strokeOrderImg={row.image}
-  />
-{/each}
-
 <TabContent>
   <TabPane tabId="alpha" tab="Alpha" active>
     <div>
@@ -59,7 +38,7 @@
   </TabPane>
 </TabContent>
 
-<!-- TEST - TAB -->
+<!--
 <div class="sm:hidden">
   <label for="tabs" class="sr-only">Select your country</label>
   <select
@@ -104,21 +83,17 @@
     >
   </li>
 </ul>
-<!-- TEST - TAB -->
+-->
 
-<HanziCard
-  character="我"
-  pronunciation="Wo3"
-  meaning="já"
-  strokeOrderImg="/stroke_order/1xd.png"
-/>
-
-<HanziCard
-  character="我"
-  pronunciation="Wo3"
-  meaning="já"
-  strokeOrderImg="/stroke_order/2.jpg"
-/>
+<!-- Creates a <HanziCard/> element for each element in the rows array -->
+{#each rows as row}
+  <HanziCard
+    character={row.symbol}
+    pronunciation={row.pronounciation}
+    meaning={row.meaning}
+    strokeOrderImg={row.image}
+  />
+{/each}
 
 <style>
   .symbol {
