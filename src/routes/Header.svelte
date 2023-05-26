@@ -19,8 +19,8 @@
       <li aria-current={$page.url.pathname === "/" ? "page" : undefined}>
         <a href="/">Homo</a>
       </li>
-      <li aria-current={$page.url.pathname === "/about" ? "page" : undefined}>
-        <a href="/about">About</a>
+      <li aria-current={$page.url.pathname === "/lekce" ? "page" : undefined}>
+        <a href="/lekce">Lekce</a>
       </li>
       <li
         aria-current={$page.url.pathname.startsWith("/sverdle")
@@ -38,9 +38,9 @@
         <a href="/nastaveni">Nastavení</a>
       </li>
       <li
-        aria-current={$page.url.pathname === "/dbinsert" ? "page" : undefined}
+        aria-current={$page.url.pathname === "/admin" ? "page" : undefined}
       >
-        <a href="/dbinsert">Admin</a>
+        <a href="/admin">Admin</a>
       </li>
     </ul>
     <svg viewBox="0 0 2 3" aria-hidden="true">
