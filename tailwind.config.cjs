@@ -6,6 +6,10 @@ const config = {
   },
 
   plugins: [],
+
+  corePlugins: {
+    preflight: false,
+  }
 };
 
 module.exports = config;
