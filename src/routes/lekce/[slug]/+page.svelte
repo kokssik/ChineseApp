@@ -1,55 +1,25 @@
 <script>
   export let data;
   import mdParser from "$lib/utils/md-parser";
+  import { onMount } from "svelte";
+  import SQLite from "tauri-plugin-sqlite-api";
+
+  let rows = [];
 
   let id = data.slug; // to recognize which lection is opened
 
-  let input = `
-      # h1 Heading 8-)
-      ## h2 Heading
-      ### h3 Heading
-      #### h4 Heading
-      ##### h5 Heading
-      ###### h6 Heading
+  let query = `SELECT * FROM lekce WHERE id = ?`;
 
+  let parsed;
 
-      ## Horizontal Rules
+  onMount(async () => {
+    const db = await SQLite.open("./hanzi.db");
 
-      ___
+    rows = await db.select(query, [id]);
 
-      ---
-
-      ***
-
-
-      ## Typographic replacements
-
-      Enable typographer option to see result.
-
-      (c) (C) (r) (R) (tm) (TM) (p) (P) +-
-
-      test.. test... test..... test?..... test!....
-
-      !!!!!! ???? ,,  -- ---
-
-      "Smartypants, double quotes" and 'single quotes'
-
-
-## Emphasis
-
-      **This is bold text**
-
-      __This is bold text__
-
-      *This is italic text*
-
-      _This is italic text_
-
-      ~~Strikethrough~~
-
-  `;
-
-  let parsed = mdParser(input);
+    console.log(rows[0].markdown);
+    parsed = mdParser(rows[0].markdown);
+  });
 </script>
 
 {id}

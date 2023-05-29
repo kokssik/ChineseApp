@@ -37,9 +37,7 @@
       >
         <a href="/nastaveni">Nastavení</a>
       </li>
-      <li
-        aria-current={$page.url.pathname === "/admin" ? "page" : undefined}
-      >
+      <li aria-current={$page.url.pathname === "/admin" ? "page" : undefined}>
         <a href="/admin">Admin</a>
       </li>
     </ul>

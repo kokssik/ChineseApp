@@ -7,7 +7,7 @@
 
   <ul class="list-disc">
     <li>
-      <a href="">Lekce 1</a>
+      <a href="/lekce/lekce69">Lekce 1</a>
       <ul class="list-disc list-inside pl-6">
         <li>Výslovnost a přepis čínštiny</li>
         <li>Pinyin</li>
@@ -16,7 +16,7 @@
     </li>
 
     <li>
-      <a href="">Lekce 2</a>
+      <a href="/lekce/lekce420">Lekce 2</a>
       <ul class="list-disc list-inside pl-6">
         <li>Základní větná stavba</li>
         <li>Pořadí slov ve větě</li>

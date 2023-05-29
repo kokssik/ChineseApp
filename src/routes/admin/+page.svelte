@@ -13,7 +13,7 @@
 
         /* execute SQL */
         await db.execute(`
-         CREATE TABLE hanzi (id TEXT NOT NULL PRIMARY KEY,
+        CREATE TABLE hanzi (id TEXT NOT NULL PRIMARY KEY,
                              symbol TEXT,
                              pronounciation TEXT,
                              meaning TEXT,
@@ -21,12 +21,24 @@
                              word1 TEXT,
                              word2 TEXT );
 
-           INSERT INTO hanzi VALUES ('0', '我', 'Wo3', 'Já', 'static/stroke_order/1xd.png', 'xd', 'xd');
-           INSERT INTO hanzi VALUES ('1', '是', 'Shi2', 'Být', 'static/stroke_order/1xd.png', 'xd', 'xd');
+        INSERT INTO hanzi VALUES ('0', '我', 'Wo3', 'Já', 'static/stroke_order/1xd.png', 'xd', 'xd');
+        INSERT INTO hanzi VALUES ('1', '是', 'Shi2', 'Být', 'static/stroke_order/1xd.png', 'xd', 'xd');
+
+        CREATE TABLE lekce (id TEXT NOT NULL PRIMARY KEY,
+                            markdown TEXT);
+
+        INSERT INTO lekce VALUES ('lekce69', '#nadpis1
+                                              ##nadpis2
+                                              text xd
+                                              dddfgfgegetget');
+
+        INSERT INTO lekce VALUES ('lekce420', '#nabdgbgd
+                                              ##nadpibdbd
+                                              text bgdbdgbdbd
+                                              UwU');
        `);
     });
 
-    let id = "";
     let symbol = "";
     let pronounciation = "";
     let meaning = "";
@@ -47,28 +59,56 @@
             ]
         );
     }
+
+    let id = "";
+    let markdown = "";
+
+    async function submitMarkdown() {
+        await db.execute("INSERT INTO lekce VALUES (?1, ?2)", [id, markdown]);
+    }
 </script>
 
 <h1>Add a new hanzi:</h1>
 <form class="content">
-    <label>Znak:</label>
-    <input type="text" bind:value={symbol} />
+    <table>
+        <tr>
+            <td><label for="hanzi_insert">Znak:</label></td>
+            <td><input type="text" bind:value={symbol} /></td>
+        </tr>
 
-    <label>Vyslovnost:</label>
-    <input type="text" bind:value={pronounciation} />
+        <tr>
+            <td><label for="hanzi_insert">Vyslovnost:</label></td>
+            <td><input type="text" bind:value={pronounciation} /></td>
+        </tr>
+        <tr>
+            <td><label for="hanzi_insert">Význam:</label></td>
+            <td><input type="text" bind:value={meaning} /></td>
+        </tr>
+        <tr>
+            <td><label for="hanzi_insert">Slovo 1:</label></td>
+            <td><input type="text" bind:value={word1} /></td>
+        </tr>
+        <tr>
+            <td> <label for="hanzi_insert">Slovo 2:</label></td>
+            <td> <input type="text" bind:value={word2} /></td>
+        </tr>
+        <tr>
+            <td><label for="hanzi_insert">Obrázek:</label></td>
+            <td><input type="file" /></td>
+        </tr><tr>
+            <td> <label for="hanzi_insert">Odeslat</label> </td>
+            <td><button on:click={submit}>Odeslat</button></td>
+        </tr>
+    </table>
+</form>
 
-    <label>Význam:</label>
-    <input type="text" bind:value={meaning} />
+<h1>Insert markdown into DB:</h1>
 
-    <label>Slovo 1:</label>
-    <input type="text" bind:value={word1} />
-
-    <label>Slovo 2:</label>
-    <input type="text" bind:value={word2} />
-
-    <label>Obrázek:</label>
-    <input type="file" />
-
-    <label>Odeslat</label>
-    <button on:click={submit}>Odeslat</button>
+<form action="/action_page.php">
+    <p><label for="markdown_insert">id:</label></p>
+    <input type="text" bind:value={id} />
+    <p><label for="markdown_insert">Markdown code:</label></p>
+    <textarea bind:value={markdown} rows="4" cols="50" />
+    <br />
+    <button on:click={submitMarkdown}>Submit</button>
 </form>
